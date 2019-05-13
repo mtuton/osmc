@@ -1,5 +1,7 @@
 # Mic Custom Kernel for Vero
 
+This custom kernel enables support for running Docker Swarm on the Vero 4K.
+
 After preparing the build environment according to the osmc documentation, [Getting involved with OSMC Development](https://osmc.tv/wiki/development/getting-involved-with-osmc-development).
 
 Copy the customised config file from the `configs` directory into the osmc `patch` directory. 
