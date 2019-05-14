@@ -13,7 +13,7 @@ This file was created by performing a `diff` between the vero364 config and the 
 
 ```shell
 $ cd config
-$ `diff -Naur vero_baseline_config mic_config`.
+$ diff -Naur vero_baseline_config mic_config
 ```
 
 Build the new vero364 kernel
