@@ -1,0 +1,43 @@
+# for use with debian:stretch image
+
+version:  0.2 
+ 
+env: 
+  # golang is not used in this build, leaving this here for reference only
+  variables: 
+    GOOS: "linux" 
+    GOARCH: "arm64" 
+ 
+phases: 
+  install: 
+    commands: 
+      - echo "Entered install phase" 
+      - apt-get update 
+      - apt-get -qq install -y build-essential git sudo apt-utils
+ 
+  pre_build: 
+    commands: 
+      # check out - https://ownyourbits.com/2018/06/13/transparently-running-binaries-from-any-architecture-in-linux-with-qemu-and-binfmt_misc/
+      # build the toolchain required to compile the kernel source
+      - echo "Entered pre-build phase" 
+      - apt-get -qq install debootstrap dh-make devscripts qemu binfmt-support qemu-user-static
+      - cd toolchains/aarch64-toolchain-osmc
+      - make
+      - ls -l 
+      - dpkg -i 
+ 
+  build: 
+    commands: 
+      # build the kernel
+      - echo "Entered build phase" 
+      - cp mic/patches/vero364-005-add-mic-kernel-config.patch package/kernel-osmc/patches
+      - cd package/kernel-osmc
+      - make vero364 
+ 
+artifacts: 
+  files: 
+    - vero364-kernel-*-osmc.deb
+    - vero364-headers-*_arm64.deb
+    - vero364-source-*_all.deb
+  base-directory: package/kernel-osmc 
+  discard-paths: yes 
