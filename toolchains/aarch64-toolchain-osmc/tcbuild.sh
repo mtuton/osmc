@@ -30,6 +30,7 @@ chroot ${DIR} umount /proc
 rm ${DIR}/usr/bin/${ARM_EMULATOR}
 
 # RUN build_deb_package "${wd}" "${tcstub}"
+wd=$(pwd)
 mkdir -p ${wd}/output
 cp -ar ${wd}/DEBIAN ${wd}/output
 mv ${wd}/opt ${wd}/output
