@@ -5,8 +5,16 @@ version:  0.2
 env: 
   # golang is not used in this build, leaving this here for reference only
   variables: 
-    GOOS: "linux" 
-    GOARCH: "arm64" 
+    tcstub: "aarch64-toolchain-osmc"
+    wd: "/osmc/toolchains/${tcstub}"
+
+    ARCH: "arm64"
+    DIR: "opt/osmc-tc/${tcstub}"
+    RLS: "stretch"
+    URL: ""
+
+    ARM_EMULATOR: "qemu-aarch64-static"
+    target: "aarch64"
  
 phases: 
   install: 
@@ -21,10 +29,10 @@ phases:
       # build the toolchain required to compile the kernel source
       - echo "Entered pre-build phase" 
       - apt-get -qq install debootstrap dh-make devscripts qemu binfmt-support qemu-user-static
-      - cd toolchains/aarch64-toolchain-osmc
-      - make
-      - ls -l 
-      - dpkg -i 
+      - cd /osmc/toolchains/${tcstub}
+      - chmod 755 tcbuild.sh
+      - ./tcbuild.sh
+      - dpkg -i aarch64-toolchain-osmc.deb
  
   build: 
     commands: 
