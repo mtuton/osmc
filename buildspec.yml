@@ -3,7 +3,6 @@
 version:  0.2 
  
 env: 
-  # golang is not used in this build, leaving this here for reference only
   variables: 
     tcstub: "aarch64-toolchain-osmc"
     wd: "/osmc/toolchains/${tcstub}"
@@ -29,8 +28,7 @@ phases:
       # build the toolchain required to compile the kernel source
       - echo "Entered pre-build phase" 
       - apt-get -qq install debootstrap dh-make devscripts qemu binfmt-support qemu-user-static
-      - cd /osmc/toolchains/${tcstub}
-      - chmod 755 tcbuild.sh
+      - cd osmc/toolchains/${tcstub}
       - ./tcbuild.sh
       - dpkg -i aarch64-toolchain-osmc.deb
  
