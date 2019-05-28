@@ -35,6 +35,7 @@ mkdir -p ${wd}/output
 cp -ar ${wd}/DEBIAN ${wd}/output
 mv ${wd}/opt ${wd}/output
 #target=$(echo $1 | rev | cut -d / -f 1 | rev | cut -d - -f 1)
+mkdir -p ${wd}/output/opt/osmc-tc/${target}-toolchain-osmc
 echo ${tcstub} >${wd}/output/opt/osmc-tc/${target}-toolchain-osmc/tcver.${target}
 
 # dpkg_build ${1}/output ${2}.deb
