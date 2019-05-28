@@ -30,7 +30,7 @@ phases:
       - apt-get -qq install debootstrap dh-make devscripts qemu binfmt-support qemu-user-static
       - ls -l
       - pwd
-      - cd osmc/toolchains/${tcstub}
+      - cd toolchains/${tcstub}
       - ./tcbuild.sh
       - dpkg -i aarch64-toolchain-osmc.deb
  
