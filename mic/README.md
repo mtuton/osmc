@@ -1,4 +1,4 @@
-# Mic Custom Kernel for Vero
+# Custom Kernel for Vero
 
 This custom kernel enables support for running Docker Swarm on the Vero 4K.
 

@@ -28,7 +28,10 @@ phases:
       # build the toolchain required to compile the kernel source
       - echo "Entered pre-build phase" 
       - apt-get -qq install debootstrap dh-make devscripts qemu binfmt-support qemu-user-static
-      - cd osmc/toolchains/${tcstub}
+      - ls -l
+      - pwd
+      - cd toolchains/${tcstub}
+      - chmod 755 tcbuild.sh
       - ./tcbuild.sh
       - dpkg -i aarch64-toolchain-osmc.deb
  
